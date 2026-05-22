@@ -12,14 +12,14 @@ class LoggerServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(LoggerServices::class, function(){
+        $this->app->scoped(LoggerServices::class, function(){
                 return new LoggerServices;
         });
     }
 
     /**
-     * Bootstrap services.
-     */
+     * Bootstrap services.         
+     */ 
     public function boot(): void
     {
         //

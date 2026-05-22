@@ -6,12 +6,11 @@
 
 <form method="POST" action="/login">
     @csrf
-
-    <input type="email" name="email" placeholder="Email">
+    <input type="email" name="email" placeholder="Email" value="{{old('email')}}">
     <br><br>
 
     <input type="password" name="password" placeholder="Password">
     <br><br>
 
-    <button type="s ubmit">Login</button>
+    <button type="submit">Login</button>
 </form>

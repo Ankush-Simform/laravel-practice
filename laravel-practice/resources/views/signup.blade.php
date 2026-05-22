@@ -9,7 +9,7 @@
 
 <form method="POST" action="/signup">
 
-    @csrf
+    <!-- @csrf -->
 
     <input type="text" name="name" placeholder="Enter Name">
     <br><br>

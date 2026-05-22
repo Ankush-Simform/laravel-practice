@@ -15,16 +15,22 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
+        $validated = $request->validate([
+            'name' => 'required|string|min:3|max:20',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6 '
         ]);
 
+        $validated['name'] = preg_replace(
+            '/\s+/',
+            '',
+            trim($validated['name'])
+        );
+
         User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password'])
         ]);
 
         return redirect('/login');
@@ -40,11 +46,14 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
+
+            $request->session()->regenerate();
+            return redirect('/admin/dashboard');
         }
-        return back()->with('error', 'invalid credentials');
+        return back()->with('error', 'invalid credentials')
+            ->withInput();
     }
-    
+
     public function showDashboard()
     {
         return view('dashboard');

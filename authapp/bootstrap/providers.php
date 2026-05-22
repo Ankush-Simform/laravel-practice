@@ -1,7 +1,7 @@
-<?php
+    <?php
 
-return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\LoggerServiceProvider::class,
-    App\Providers\SimpleLoggerServiceProvider::class,
-];
+    return [
+        App\Providers\AppServiceProvider::class,
+        App\Providers\LoggerServiceProvider::class,
+        // App\Providers\SimpleLoggerServiceProvider::class,
+    ];

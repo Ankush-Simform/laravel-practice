@@ -3,27 +3,19 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Contracts\PaymentGateway;
-use App\Services\StripePayment;
+use App\Services\SimpleLogger;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        $this->app->bind(
-            PaymentGateway::class,
-            StripePayment::class
-        );
+        $this->app->bind('simplelogger', function () {
+            return new SimpleLogger();
+        });
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        //
+        //  
+        }
     }
-}

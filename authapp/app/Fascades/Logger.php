@@ -10,4 +10,4 @@ class Logger extends Facade
     {
         return \App\Services\LoggerServices::class;
     }
-}
+}   
